@@ -56,7 +56,10 @@ def uri_from_url(url):
 
 def host_from_url(url):
     parse = urlparse(url)
-    return parse.hostname
+    if parse.port:
+        return parse.hostname + ':' + str(parse.port)
+    else:
+        return parse.hostname
 
 
 def s3_auth_headers(url):
